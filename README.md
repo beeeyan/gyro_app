@@ -60,7 +60,7 @@ VSCode用の設定は追加済みである。
 
 iOSのbuildを実行するため、以下のスクリプトに実行権限を与えてください。  
 ```console
-$ chmod 755 ios/scripts/retrieve_dart_defines.sh
+$ chmod 755 ios/script/retrieve_dart_defines.sh
 ```
 
 ## 実行・ビルド方法

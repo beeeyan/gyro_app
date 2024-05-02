@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'config/flavor.dart';
+import 'config/logger.dart';
+
 void main() {
+  logger.i('FLAVOR : ${flavor.name}');
   runApp(const MyApp());
 }
 
