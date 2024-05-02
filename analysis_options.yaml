@@ -5,6 +5,8 @@ linter:
   rules:
     # Some explanation why we don't want this lint
     avoid_classes_with_only_static_members: false
+    # prefer relative paths
+    prefer_relative_imports: true
 
 # Ignore lint warnings on freezed generated files
 analyzer:
