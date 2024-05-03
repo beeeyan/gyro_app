@@ -4,7 +4,25 @@
 
 # 初期設定済みプロジェクト
 
+## プロジェクト作成方法（fvm前提）
+
+プロジェクトは以下で作成している。  
+
+```console
+$ fvm use 3.19.6 --force
+ $ fvm flutter create \
+   --platforms=ios,android \
+   --org com.example \
+   app
+```
+
 ## 利用方法
+
+本プロジェクトを`clone`後、以下を案件ごとに書き換える。
+
+### アプリ名称
+
+「アプリ名」で検索して、正しいアプリ名に痴漢
 
 ### パッケージ名（bundle Id Application ID）の変更
   
@@ -33,6 +51,85 @@ $ ./change_package_name.sh com.example.app
 ```
   
 処理が終わったら`change_package_name.sh`は消しておいてもいいかと思う。  
+
+### Flutterバージョン
+
+fvmが使用しているFlutterのバージョンは[.fvmrc](.fvmrc)に記載されている。
+Flutterのバージョンを変更したい場合は`fvm use`コマンドを使用する。  
+※ 設定ファイルの書き換えもあるため、コマンドで実施する。  
+
+```console
+$ vm use 3.19.6
+```
+
+### Githubの設定
+
+- 案件のリポジトリを作成
+- remote urlを案件のリポジトリに変更。
+
+```console
+# 現在のremote url を確認
+$ git remote -v
+# remote url を変更
+$ git remote set-url origin {new-url}
+# 正しく変更できているか確認
+$ git remote -v
+```
+
+## 事前追加している実装・対応
+
+変更が必要な場合は、案件ごとに変更すること。  
+
+### lintの設定  
+[pedantic_mono](https://pub.dev/packages/pedantic_mono)を採用。versionはanyとしている。  
+変更可否の判断基準 : 外的要因で指定がある場合。それ以外は変更しないことを推奨。  
+
+### 輸出コンプライアンスの設定  
+  
+暗号化を使用していない、もしくは免除の対象になる暗号化のみを使用していることを示す。　
+Appleのストアでの操作を楽にできる。([参考](https://tommy10344.hatenablog.com/entry/2020/04/29/025809))  
+免除の対象になる暗号化 : HTTPSや、OSに組み込まれた標準の暗号化  
+変更可否の判断基準 : 免除の対象になる暗号化以外を使用している場合。※ 2023/1/5時点では、今まで経験はない。  
+
+### パッケージのimport方法を自動で修正する設定
+
+相対パス・絶対パスを使い分けるようにしており、人力でやるとミスが発生するので自動でimport方法を修正するように追加した。  
+「相対パス・絶対パスを使い分ける」方針にしたのは以下の公式ガイドが参考。  
+[PREFER relative import paths](https://dart.dev/effective-dart/usage#prefer-relative-import-paths)  
+  
+変更可否の判断基準 : 「絶対パス」で統一する指定がある場合など。  
+
+### Appleの対応言語に日本語を追加
+  
+Apple Storeで言語表示を「日本語」にするには本対応が必要。
+最低限の対応しかしていない。  
+参考 : https://eda-inc.jp/post-4472/  
+注意 言語ごとにATTを設定する場合は、対応言語のファイルに記載する必要がある。（日本語のみの場合は`info.plist`のみの記載でも最悪可能）  
+  
+変更可否の判断基準 : 対応言語に日本語がない  
+
+### Dioの実装
+
+[フォルダ](./lib/api/)  
+
+元々の参考  
+https://github.com/KosukeSaigusa/flutterfire-commons/tree/main/packages/routing_with_riverpod/example  
+  
+変更可否の判断基準 : APIとのやりとりがない場合は削除推奨。  
+  
+また[base_response_data](./lib/api/model/base_response_data/base_response_data.dart)は要件によって変えた方がいいかもしれない。  
+※ 現状そのままmainにデータ入れている。「参考」の実装などでは「message」はどのAPIでも存在する想定で作成されている。
+
+### PrivateManifestの設定
+
+shared_preferencesはほぼほぼ利用する想定で、以下のみデフォルトで追加している。  
+※ 必要なければ消す・適宜アプリごとに必要な設定を追加すること。  
+Privacy Accessed API Type : User Defaults  
+Privacy Accessed API Reasons : CA92.1  
+  
+[参考](https://developer.apple.com/documentation/bundleresources/privacy_manifest_files/describing_use_of_required_reason_api/#4278401)
+
+以下README雛形
 
 ----------------------------------
 
