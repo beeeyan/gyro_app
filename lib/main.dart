@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'config/flavor.dart';
-import 'config/logger.dart';
+import 'util/logger.dart';
 
 void main() {
   logger.i('FLAVOR : ${flavor.name}');
