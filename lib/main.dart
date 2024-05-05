@@ -23,6 +23,7 @@ class MyApp extends ConsumerWidget {
     return MaterialApp.router(
       title: 'Flutter Demo',
       theme: ThemeData(
+        fontFamily: 'NotoSansJP',
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
