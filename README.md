@@ -129,6 +129,12 @@ Privacy Accessed API Reasons : CA92.1
   
 [参考](https://developer.apple.com/documentation/bundleresources/privacy_manifest_files/describing_use_of_required_reason_api/#4278401)
 
+### GoRouterとbottomNavigationの追加
+
+GoRouterとデフォルトのbottomNavigationを追加。  
+  
+変更可否の判断基準 : GoRouterは基本変えなくていいと思うが、bottomNavigationをデフォルトのものと変える場合など  
+  
 以下README雛形
 
 ----------------------------------
