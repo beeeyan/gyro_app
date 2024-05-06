@@ -135,6 +135,10 @@ GoRouterとデフォルトのbottomNavigationを追加。
   
 変更可否の判断基準 : GoRouterは基本変えなくていいと思うが、bottomNavigationをデフォルトのものと変える場合など  
   
+### フォント
+
+`NotoSansJP`と`NotoSans`をデフォルトとして追加している。
+  
 以下README雛形
 
 ----------------------------------
