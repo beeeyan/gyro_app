@@ -26,7 +26,8 @@ class ConnectivityInterceptor extends Interceptor {
 /// インターネットに接続しているかどうか
 Future<bool> get _isNetworkConnected async {
   final result = await Connectivity().checkConnectivity();
-  return result != ConnectivityResult.none;
+  // TODO(beeeyan): 適当な改修しているので実際に利用する時に確認する必要あり。
+  return result.contains(ConnectivityResult.none);
 }
 
 /// HTTP 通信でのエラーの種別の列挙

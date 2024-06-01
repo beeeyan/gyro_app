@@ -59,7 +59,7 @@ Flutterのバージョンを変更したい場合は`fvm use`コマンドを使�
 ※ 設定ファイルの書き換えもあるため、コマンドで実施する。  
 
 ```console
-$ vm use 3.19.6
+$ fvm use 3.22.1
 ```
 
 ### Githubの設定
@@ -156,7 +156,7 @@ VSCode用の設定は追加済みである。
     - ※ 私は`Homebrew`でインストールしています。
 - 使用しているバージョンは [.fvmrc](.fvmrc) に記載されています。
 - FVMのインストール後、以下の流れで環境構築を実施。
-    - プロジェクトのルートディレクトリで、`fvm flutter --version`を実行すると、ローカル環境に該当のバージョンがなければインストールされる。
+    - プロジェクトのルートディレクトリで、`fvm use`を実行すると、ローカル環境に該当のバージョンがなければインストールされる。
     - VSCode の場合
         - VSCode を再起動する
         - main.dart などの dart ファイルを開き、エディタの右下の「Dart」部分をクリックして、該当のバージョンのFlutterが読み込まれていればOK
@@ -173,6 +173,8 @@ $ chmod 755 ios/script/retrieve_dart_defines.sh
 ## 実行・ビルド方法
 
 開発環境の実行コマンド  
+※`fvm3`系にしたのでVSCodeでは`fvm`つけなくてもいいはずではある。
+  
 ```console
 $ fvm flutter run --debug --dart-define=FLAVOR=dev
 ```
