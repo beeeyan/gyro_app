@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../feature/data_view/data_view.dart';
 import '../feature/root.dart';
-import '../feature/sample1.dart';
 import '../feature/sample2.dart';
 import '../feature/tilt_move/tilt_move.dart';
 import 'no_animation_transition.dart';
@@ -35,10 +35,10 @@ final goRouterProvider = Provider<GoRouter>((ref) {
             ),
           ),
           GoRoute(
-            path: Sample1Page.path,
-            name: Sample1Page.name,
+            path: DataViewPage.path,
+            name: DataViewPage.name,
             pageBuilder: (context, state) => buildNoAnimationTransition(
-              const Sample1Page(),
+              const DataViewPage(),
             ),
           ),
           GoRoute(

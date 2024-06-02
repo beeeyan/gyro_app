@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 
-import '../feature/sample1.dart';
+import '../feature/data_view/data_view.dart';
 import '../feature/sample2.dart';
 import '../feature/tilt_move/tilt_move.dart';
 
 enum BottomNavigationBarPageType {
-  home(
+  tiltmove(
     '傾きで要素が動く',
     '傾きで要素が動く',
     Icons.home,
     TiltMovePage.path,
   ),
-  sample1(
-    'サンプル1',
-    'サンプル1',
+  dataview(
+    'センサーから取得したデータの確認',
+    'センサーから取得したデータの確認',
     Icons.bookmark_border_outlined,
-    Sample1Page.path,
+    DataViewPage.path,
   ),
   sample2(
     'サンプル2',
@@ -40,14 +40,14 @@ enum BottomNavigationBarPageType {
     // 詳細画面に遷移してもボトムナビゲーションを表示させる場合を考慮して
     // startsWithで処理する。
     if (path.startsWith(TiltMovePage.path)) {
-      return BottomNavigationBarPageType.home;
+      return BottomNavigationBarPageType.tiltmove;
     }
-    if (path.startsWith(Sample1Page.path)) {
-      return BottomNavigationBarPageType.sample1;
+    if (path.startsWith(DataViewPage.path)) {
+      return BottomNavigationBarPageType.dataview;
     }
     if (path.startsWith(Sample2Page.path)) {
       return BottomNavigationBarPageType.sample2;
     }
-    return BottomNavigationBarPageType.home;
+    return BottomNavigationBarPageType.tiltmove;
   }
 }
