@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class TiltMovePage extends StatelessWidget {
+  const TiltMovePage({super.key});
 
-  static const String name = 'home';
-  static const String path = '/home';
+  static const String name = 'tiltmove';
+  static const String path = '/tiltmove';
 
   @override
   Widget build(BuildContext context) {

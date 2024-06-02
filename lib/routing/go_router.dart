@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../feature/home/home.dart';
 import '../feature/root.dart';
 import '../feature/sample1.dart';
 import '../feature/sample2.dart';
+import '../feature/tilt_move/tilt_move.dart';
 import 'no_animation_transition.dart';
 
 final rootNavigatorKeyProvider = Provider(
@@ -21,17 +21,17 @@ final goRouterProvider = Provider<GoRouter>((ref) {
   final shellNavigatorKey = ref.watch(shellNavigatorKeyProvider);
   return GoRouter(
     navigatorKey: rootNavigatorKey,
-    initialLocation: HomePage.path,
+    initialLocation: TiltMovePage.path,
     routes: [
       ShellRoute(
         navigatorKey: shellNavigatorKey,
         builder: (context, state, child) => RootPage(child: child),
         routes: [
           GoRoute(
-            path: HomePage.path,
-            name: HomePage.name,
+            path: TiltMovePage.path,
+            name: TiltMovePage.name,
             pageBuilder: (context, state) => buildNoAnimationTransition(
-              const HomePage(),
+              const TiltMovePage(),
             ),
           ),
           GoRoute(

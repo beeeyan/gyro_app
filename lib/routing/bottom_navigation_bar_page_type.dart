@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-import '../feature/home/home.dart';
 import '../feature/sample1.dart';
 import '../feature/sample2.dart';
+import '../feature/tilt_move/tilt_move.dart';
 
 enum BottomNavigationBarPageType {
   home(
-    'ホーム',
-    'ホーム',
+    '傾きで要素が動く',
+    '傾きで要素が動く',
     Icons.home,
-    HomePage.path,
+    TiltMovePage.path,
   ),
   sample1(
     'サンプル1',
@@ -39,7 +39,7 @@ enum BottomNavigationBarPageType {
   static BottomNavigationBarPageType pageTypeByPath(String path) {
     // 詳細画面に遷移してもボトムナビゲーションを表示させる場合を考慮して
     // startsWithで処理する。
-    if (path.startsWith(HomePage.path)) {
+    if (path.startsWith(TiltMovePage.path)) {
       return BottomNavigationBarPageType.home;
     }
     if (path.startsWith(Sample1Page.path)) {
