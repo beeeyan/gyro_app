@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:sensors_plus/sensors_plus.dart';
@@ -19,21 +20,27 @@ class _TiltMovePageState extends State<TiltMovePage>
   AccelerometerEvent? _accelerometerEvent;
   GyroscopeEvent? _gyroscopeEvent;
   MagnetometerEvent? _magnetometerEvent;
-  late AnimationController _animationController;
-  // ジェネリクスの中は「_animation.value」で取得できる値の型
-  late Animation<double> _animation;
+
   final _streamSubscriptions = <StreamSubscription<dynamic>>[];
+  // widgetの位置
+  double widgetX = 0;
+  double widgetY = 0;
+  final boxSize = 20.0;
 
   @override
   void initState() {
     super.initState();
-    // final height = MediaQuery.sizeOf(context).height * 0.8;
-    // final width = MediaQuery.sizeOf(context).width * 0.8;
 
-    _animationController =
-        AnimationController(duration: const Duration(seconds: 3), vsync: this);
-    _animation =
-        CurvedAnimation(parent: _animationController, curve: Curves.bounceOut);
+    // デバイスサイズの取得
+    final view = PlatformDispatcher.instance.views.first;
+    final viewWidth = view.physicalSize.shortestSide / view.devicePixelRatio;
+    final viewHeight = view.physicalSize.longestSide / view.devicePixelRatio -
+        kBottomNavigationBarHeight -
+        kToolbarHeight;
+    // 初期値
+    widgetX = viewWidth / 2;
+    widgetY = 0;
+
     _streamSubscriptions
       ..add(
         userAccelerometerEventStream().listen(
@@ -61,16 +68,24 @@ class _TiltMovePageState extends State<TiltMovePage>
       ..add(
         accelerometerEventStream().listen(
           (AccelerometerEvent event) {
-            // _animationController.animateWith(
-            //   GravitySimulation(
-            //     event.y * 100,
-            //     0,
-            //     300,
-            //     0,
-            //   ),
-            // );
             setState(() {
               _accelerometerEvent = event;
+              // 新しい位置を計算
+              widgetX -= event.x * 20;
+              widgetY += event.y * 20;
+              // 画面外に出ないようにする
+              if (widgetX < 0) {
+                widgetX = 0;
+              }
+              if (widgetY < 0) {
+                widgetY = 0;
+              }
+              if (widgetX > viewWidth - boxSize) {
+                widgetX = viewWidth - boxSize;
+              }
+              if (widgetY > viewHeight - boxSize - kBottomNavigationBarHeight) {
+                widgetY = viewHeight - boxSize - kBottomNavigationBarHeight;
+              }
             });
           },
           onError: (e) {
@@ -88,56 +103,11 @@ class _TiltMovePageState extends State<TiltMovePage>
           },
           cancelOnError: true,
         ),
-      )
-      ..add(
-        gyroscopeEventStream().listen(
-          (GyroscopeEvent event) {
-            setState(() {
-              _gyroscopeEvent = event;
-            });
-          },
-          onError: (e) {
-            showDialog<Widget>(
-              context: context,
-              builder: (context) {
-                return const AlertDialog(
-                  title: Text('センサーが見つかりません'),
-                  content: Text(
-                    '使用中のデバイスでは「ジャイロスコープセンサー」が搭載されていない可能性があります',
-                  ),
-                );
-              },
-            );
-          },
-        ),
-      )
-      ..add(
-        magnetometerEventStream().listen(
-          (MagnetometerEvent event) {
-            setState(() {
-              _magnetometerEvent = event;
-            });
-          },
-          onError: (e) {
-            showDialog<Widget>(
-              context: context,
-              builder: (context) {
-                return const AlertDialog(
-                  title: Text('センサーが見つかりません'),
-                  content: Text(
-                    '使用中のデバイスでは「磁力センサー」が搭載されていない可能性があります',
-                  ),
-                );
-              },
-            );
-          },
-        ),
       );
   }
 
   @override
   void dispose() {
-    _animationController.dispose();
     super.dispose();
     for (final subscription in _streamSubscriptions) {
       subscription.cancel();
@@ -146,36 +116,18 @@ class _TiltMovePageState extends State<TiltMovePage>
 
   @override
   Widget build(BuildContext context) {
-    // thisの参照はbuildの中でしかできない。
-    const boxSize = 20.0;
-    final height = MediaQuery.sizeOf(context).height * 0.8;
-    final width = MediaQuery.sizeOf(context).width * 0.8;
     return Stack(
       children: [
         const SizedBox.expand(),
         Positioned(
-          left: width/2 + (_userAccelerometerEvent?.x ?? 0) * 20,
-          top: height/2 - (_userAccelerometerEvent?.y ?? 0) * 20,
+          left: widgetX,
+          top: widgetY,
           child: Container(
             height: boxSize,
             width: boxSize,
             color: Colors.red.withOpacity(0.54),
           ),
         ),
-        // AnimatedBuilder(
-        //   animation: _animationController,
-        //   builder: (BuildContext context, Widget? child) {
-        //     return Positioned(
-        //       left: 0,
-        //       top: _animation.value * (height - boxSize),
-        //       child: Container(
-        //         height: boxSize,
-        //         width: boxSize,
-        //         color: Colors.red.withOpacity(0.54),
-        //       ),
-        //     );
-        //   },
-        // ),
       ],
     );
   }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../feature/data_view/data_view.dart';
-import '../feature/sample2.dart';
 import '../feature/tilt_move/tilt_move.dart';
+import '../feature/tilt_move2.dart';
 
 enum BottomNavigationBarPageType {
   tiltmove(
@@ -17,11 +17,11 @@ enum BottomNavigationBarPageType {
     Icons.bookmark_border_outlined,
     DataViewPage.path,
   ),
-  sample2(
-    'サンプル2',
-    'サンプル2',
+  trialtiltmove(
+    '検討',
+    '検討',
     Icons.bookmark_border_outlined,
-    Sample2Page.path,
+    TrialTiltMovePage.path,
   );
 
   const BottomNavigationBarPageType(
@@ -45,8 +45,8 @@ enum BottomNavigationBarPageType {
     if (path.startsWith(DataViewPage.path)) {
       return BottomNavigationBarPageType.dataview;
     }
-    if (path.startsWith(Sample2Page.path)) {
-      return BottomNavigationBarPageType.sample2;
+    if (path.startsWith(TrialTiltMovePage.path)) {
+      return BottomNavigationBarPageType.trialtiltmove;
     }
     return BottomNavigationBarPageType.tiltmove;
   }

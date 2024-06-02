@@ -4,8 +4,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../feature/data_view/data_view.dart';
 import '../feature/root.dart';
-import '../feature/sample2.dart';
 import '../feature/tilt_move/tilt_move.dart';
+import '../feature/tilt_move2.dart';
 import 'no_animation_transition.dart';
 
 final rootNavigatorKeyProvider = Provider(
@@ -42,10 +42,10 @@ final goRouterProvider = Provider<GoRouter>((ref) {
             ),
           ),
           GoRoute(
-            path: Sample2Page.path,
-            name: Sample2Page.name,
+            path: TrialTiltMovePage.path,
+            name: TrialTiltMovePage.name,
             pageBuilder: (context, state) => buildNoAnimationTransition(
-              const Sample2Page(),
+              const TrialTiltMovePage(),
             ),
           ),
         ],
