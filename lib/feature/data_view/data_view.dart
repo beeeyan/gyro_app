@@ -130,51 +130,100 @@ class _DataViewState extends State<DataViewPage> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Text('ユーザー加速度センサー'),
+        Gap(10.h),
+        Text(
+          'ユーザー加速度センサー',
+          style: Theme.of(context).textTheme.bodyLarge,
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('x : ${_userAccelerometerEvent?.x.toStringAsFixed(1) ?? '?'}'),
+            Text(
+              'x : ${_userAccelerometerEvent?.x.toStringAsFixed(1) ?? '?'}',
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
             Gap(5.w),
-            Text('y : ${_userAccelerometerEvent?.y.toStringAsFixed(1) ?? '?'}'),
+            Text(
+              'y : ${_userAccelerometerEvent?.y.toStringAsFixed(1) ?? '?'}',
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
             Gap(5.w),
-            Text('z : ${_userAccelerometerEvent?.z.toStringAsFixed(1) ?? '?'}'),
+            Text(
+              'z : ${_userAccelerometerEvent?.z.toStringAsFixed(1) ?? '?'}',
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
           ],
         ),
-        Gap(5.h),
-        const Text('加速度センサー'),
+        Gap(10.h),
+        Text(
+          '加速度センサー',
+          style: Theme.of(context).textTheme.bodyLarge,
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('x : ${_accelerometerEvent?.x.toStringAsFixed(1) ?? '?'}'),
+            Text(
+              'x : ${_accelerometerEvent?.x.toStringAsFixed(1) ?? '?'}',
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
             Gap(5.w),
-            Text('y : ${_accelerometerEvent?.y.toStringAsFixed(1) ?? '?'}'),
+            Text(
+              'y : ${_accelerometerEvent?.y.toStringAsFixed(1) ?? '?'}',
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
             Gap(5.w),
-            Text('z : ${_accelerometerEvent?.z.toStringAsFixed(1) ?? '?'}'),
+            Text(
+              'z : ${_accelerometerEvent?.z.toStringAsFixed(1) ?? '?'}',
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
           ],
         ),
-        Gap(5.h),
-        const Text('ジャイロスコープセンサー'),
+        Gap(10.h),
+        Text(
+          'ジャイロスコープセンサー',
+          style: Theme.of(context).textTheme.bodyLarge,
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('x : ${_gyroscopeEvent?.x.toStringAsFixed(1) ?? '?'}'),
+            Text(
+              'x : ${_gyroscopeEvent?.x.toStringAsFixed(1) ?? '?'}',
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
             Gap(5.w),
-            Text('y : ${_gyroscopeEvent?.y.toStringAsFixed(1) ?? '?'}'),
+            Text(
+              'y : ${_gyroscopeEvent?.y.toStringAsFixed(1) ?? '?'}',
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
             Gap(5.w),
-            Text('z : ${_gyroscopeEvent?.z.toStringAsFixed(1) ?? '?'}'),
+            Text(
+              'z : ${_gyroscopeEvent?.z.toStringAsFixed(1) ?? '?'}',
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
           ],
         ),
-        Gap(5.h),
-        const Text('磁力センサー'),
+        Gap(10.h),
+        Text(
+          '磁力センサー',
+          style: Theme.of(context).textTheme.bodyLarge,
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('x : ${_magnetometerEvent?.x.toStringAsFixed(1) ?? '?'}'),
+            Text(
+              'x : ${_magnetometerEvent?.x.toStringAsFixed(1) ?? '?'}',
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
             Gap(5.w),
-            Text('y : ${_magnetometerEvent?.y.toStringAsFixed(1) ?? '?'}'),
+            Text(
+              'y : ${_magnetometerEvent?.y.toStringAsFixed(1) ?? '?'}',
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
             Gap(5.w),
-            Text('z : ${_magnetometerEvent?.z.toStringAsFixed(1) ?? '?'}'),
+            Text(
+              'z : ${_magnetometerEvent?.z.toStringAsFixed(1) ?? '?'}',
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
           ],
         ),
       ],
