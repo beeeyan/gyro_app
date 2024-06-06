@@ -4,6 +4,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 
+import '../../gen/assets.gen.dart';
+
 class TiltMovePage extends StatefulWidget {
   const TiltMovePage({super.key});
 
@@ -25,7 +27,7 @@ class _TiltMovePageState extends State<TiltMovePage>
   // widgetの位置
   double widgetX = 0;
   double widgetY = 0;
-  final boxSize = 20.0;
+  final boxSize = 100.0;
 
   @override
   void initState() {
@@ -125,7 +127,13 @@ class _TiltMovePageState extends State<TiltMovePage>
           child: Container(
             height: boxSize,
             width: boxSize,
-            color: Colors.red.withOpacity(0.54),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              image: DecorationImage(
+                fit: BoxFit.fill,
+                image: AssetImage(Assets.images.icon.path),
+              ),
+            ),
           ),
         ),
       ],

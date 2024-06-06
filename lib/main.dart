@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'config/flavor.dart';
+import 'gen/fonts.gen.dart';
 import 'routing/go_router.dart';
 import 'util/logger.dart';
 
@@ -36,7 +37,7 @@ class MyApp extends ConsumerWidget {
       child: MaterialApp.router(
         title: 'GyroApp',
         theme: ThemeData(
-          fontFamily: 'NotoSansJP',
+          fontFamily: FontFamily.notoSansJP,
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         ),
         routerConfig: ref.watch(goRouterProvider),
