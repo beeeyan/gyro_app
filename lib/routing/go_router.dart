@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../feature/data_view/data_view.dart';
+import '../feature/forge2d/forge2d_sample.dart';
 import '../feature/root.dart';
 import '../feature/tilt_move/tilt_move.dart';
 import '../feature/tilt_move2.dart';
@@ -46,6 +47,13 @@ final goRouterProvider = Provider<GoRouter>((ref) {
             name: TrialTiltMovePage.name,
             pageBuilder: (context, state) => buildNoAnimationTransition(
               const TrialTiltMovePage(),
+            ),
+          ),
+          GoRoute(
+            path: Forge2dPage.path,
+            name: Forge2dPage.name,
+            pageBuilder: (context, state) => buildNoAnimationTransition(
+              const Forge2dPage(),
             ),
           ),
         ],

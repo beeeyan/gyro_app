@@ -18,8 +18,7 @@ class TiltMovePage extends StatefulWidget {
   State<TiltMovePage> createState() => _TiltMovePageState();
 }
 
-class _TiltMovePageState extends State<TiltMovePage>
-    with SingleTickerProviderStateMixin {
+class _TiltMovePageState extends State<TiltMovePage>{
   final _streamSubscriptions = <StreamSubscription<dynamic>>[];
   // widgetの位置
   double widgetX = 0;
