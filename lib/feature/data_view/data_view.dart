@@ -129,6 +129,7 @@ class _DataViewState extends State<DataViewPage> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Gap(10.h),
         Text(
@@ -226,6 +227,7 @@ class _DataViewState extends State<DataViewPage> {
             ),
           ],
         ),
+         Gap(10.h),
       ],
     );
   }
