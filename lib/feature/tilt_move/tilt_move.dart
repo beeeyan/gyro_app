@@ -83,6 +83,8 @@ class _TiltMovePageState extends State<TiltMovePage>{
             }
           });
           // 物理演算で計算するためにTimerで値を更新する。
+          // SensorInterval.normalIntervalの値で処理できたかも。
+          // デフォルトstatic const normalInterval = Duration(milliseconds: 200);
           _timer = Timer.periodic(Duration(milliseconds: timerMilliseconds),
               (Timer timer) {
             if (isPhysics) {
